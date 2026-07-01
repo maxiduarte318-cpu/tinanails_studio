@@ -1,5 +1,5 @@
 /* ==============================
-   BELLA NAILS — script.js
+   TINA NAILS STUDIO — script.js
    ============================== */
 
 // ─── NAVBAR scroll ───────────────────────────────────────────────
@@ -16,7 +16,6 @@ burger.addEventListener('click', () => {
   navLinks.classList.toggle('open');
   const isOpen = navLinks.classList.contains('open');
   burger.setAttribute('aria-expanded', isOpen);
-  // Animar las barras del burger
   const spans = burger.querySelectorAll('span');
   if (isOpen) {
     spans[0].style.transform = 'translateY(7px) rotate(45deg)';
@@ -27,7 +26,6 @@ burger.addEventListener('click', () => {
   }
 });
 
-// Cerrar menú al hacer clic en un link
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('open');
@@ -90,7 +88,6 @@ if (track) {
   const cards = track.querySelectorAll('.testimonio-card');
   let currentSlide = 0;
   let cardsPerView = getCardsPerView();
-  const totalSlides = Math.ceil(cards.length / cardsPerView);
 
   function getCardsPerView() {
     if (window.innerWidth < 600) return 1;
@@ -98,7 +95,6 @@ if (track) {
     return 3;
   }
 
-  // Crear dots
   function buildDots() {
     dotsContainer.innerHTML = '';
     const n = Math.ceil(cards.length / getCardsPerView());
@@ -123,7 +119,6 @@ if (track) {
 
   buildDots();
 
-  // Auto-slide
   let autoSlide = setInterval(() => {
     const nextSlide = (currentSlide + 1) % Math.ceil(cards.length / getCardsPerView());
     goTo(nextSlide);
@@ -136,7 +131,6 @@ if (track) {
     }, 4500);
   });
 
-  // Touch swipe
   let touchStartX = 0;
   track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
   track.addEventListener('touchend', e => {
@@ -149,6 +143,16 @@ if (track) {
     buildDots();
     goTo(0);
   });
+}
+
+// ─── Fijar fecha mínima en el input date ─────────────────────────
+const inputFecha = document.getElementById('fecha');
+if (inputFecha) {
+  const today = new Date();
+  const yyyy  = today.getFullYear();
+  const mm    = String(today.getMonth() + 1).padStart(2, '0');
+  const dd    = String(today.getDate()).padStart(2, '0');
+  inputFecha.min = `${yyyy}-${mm}-${dd}`;
 }
 
 // ─── FORMULARIO de reserva ────────────────────────────────────────
@@ -168,15 +172,14 @@ function validateForm() {
   const servicio = document.getElementById('servicio').value;
   const fecha    = document.getElementById('fecha').value;
 
-  if (!nombre) { showToast('👤 Por favor ingresá tu nombre.', '#C2577A'); return false; }
-  if (!tel)    { showToast('📱 Ingresá tu número de WhatsApp.', '#C2577A'); return false; }
+  if (!nombre)  { showToast('👤 Por favor ingresá tu nombre.', '#C2577A'); return false; }
+  if (!tel)     { showToast('📱 Ingresá tu número de WhatsApp.', '#C2577A'); return false; }
   if (!servicio){ showToast('💅 Elegí un servicio.', '#C2577A'); return false; }
-  if (!fecha)  { showToast('📅 Seleccioná una fecha preferida.', '#C2577A'); return false; }
+  if (!fecha)   { showToast('📅 Seleccioná una fecha preferida.', '#C2577A'); return false; }
 
-  // Fecha no puede ser en el pasado
   const selected = new Date(fecha);
   const today    = new Date();
-  today.setHours(0,0,0,0);
+  today.setHours(0, 0, 0, 0);
   if (selected < today) {
     showToast('📅 La fecha no puede ser en el pasado.', '#C2577A');
     return false;
@@ -189,37 +192,26 @@ if (btnEnviar) {
   btnEnviar.addEventListener('click', () => {
     if (!validateForm()) return;
 
-    btnEnviar.disabled = true;
-    btnEnviar.textContent = 'Enviando…';
+    const nombre   = document.getElementById('nombre').value.trim();
+    const tel      = document.getElementById('tel').value.trim();
+    const servicio = document.getElementById('servicio').value;
+    const fecha    = document.getElementById('fecha').value;
+    const mensaje  = document.getElementById('mensaje').value.trim();
 
- //envio de formulario
-const nombre   = document.getElementById('nombre').value.trim();
-const tel      = document.getElementById('tel').value.trim();
-const servicio = document.getElementById('servicio').value;
-const fecha    = document.getElementById('fecha').value;
-const mensaje  = document.getElementById('mensaje').value.trim();
+    const texto = `Hola! Quiero reservar un turno 💅%0A%0A` +
+      `*Nombre:* ${nombre}%0A` +
+      `*WhatsApp:* ${tel}%0A` +
+      `*Servicio:* ${servicio}%0A` +
+      `*Fecha:* ${fecha}%0A` +
+      `*Diseño:* ${mensaje || 'Sin especificar'}`;
 
-const texto = `Hola! Quiero reservar un turno 💅%0A%0A` +
-  `*Nombre:* ${nombre}%0A` +
-  `*WhatsApp:* ${tel}%0A` +
-  `*Servicio:* ${servicio}%0A` +
-  `*Fecha:* ${fecha}%0A` +
-  `*Diseño:* ${mensaje || 'Sin especificar'}`;
+    const tuNumero = '5493764232429';
+    window.open(`https://wa.me/${tuNumero}?text=${texto}`, '_blank');
 
-const tuNumero = '5493764232429'; // ← Poné acá tu número SIN + ni espacios
-window.open(`https://wa.me/${tuNumero}?text=${texto}`, '_blank');
-
-btnEnviar.disabled = false;
-btnEnviar.textContent = 'Enviar solicitud';
-
-// ─── Fijar fecha mínima en el input date ─────────────────────────
-const inputFecha = document.getElementById('fecha');
-if (inputFecha) {
-  const today = new Date();
-  const yyyy  = today.getFullYear();
-  const mm    = String(today.getMonth() + 1).padStart(2, '0');
-  const dd    = String(today.getDate()).padStart(2, '0');
-  inputFecha.min = `${yyyy}-${mm}-${dd}`;
+    showToast('✅ ¡Solicitud enviada! Te contactaremos pronto.', '#4CAF50');
+    btnEnviar.disabled = false;
+    btnEnviar.textContent = 'Enviar solicitud';
+  });
 }
 
 // ─── LIGHTBOX de galería ──────────────────────────────────────────
@@ -269,7 +261,7 @@ if (inputFecha) {
 })();
 
 // ─── Active nav link al hacer scroll ─────────────────────────────
-const sections = document.querySelectorAll('section[id]');
+const sections   = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
 
 const sectionObserver = new IntersectionObserver(entries => {
@@ -287,4 +279,4 @@ sections.forEach(s => sectionObserver.observe(s));
 // ─── Smooth reveal de la navbar al cargar ────────────────────────
 window.addEventListener('load', () => {
   document.body.style.opacity = '1';
-
+});
