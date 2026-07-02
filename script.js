@@ -189,7 +189,7 @@ function validateForm() {
 }
 
 if (btnEnviar) {
-  btnEnviar.addEventListener('click', () => {
+  btnEnviar.addEventListener('click', async () => {
     if (!validateForm()) return;
 
     const nombre   = document.getElementById('nombre').value.trim();
@@ -197,6 +197,24 @@ if (btnEnviar) {
     const servicio = document.getElementById('servicio').value;
     const fecha    = document.getElementById('fecha').value;
     const mensaje  = document.getElementById('mensaje').value.trim();
+
+    // Guardar el turno en la nube (Firestore) para la app de escritorio
+    if (window.db) {
+      try {
+        await window.db.collection('reservas').add({
+          nombre,
+          telefono: tel,
+          servicio,
+          fecha,
+          mensaje: mensaje || '',
+          estado: 'pendiente',
+          origen: 'web',
+          creadoEn: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (err) {
+        console.warn('No se pudo guardar el turno en la nube:', err);
+      }
+    }
 
     const texto = `Hola! Quiero reservar un turno 💅%0A%0A` +
       `*Nombre:* ${nombre}%0A` +
