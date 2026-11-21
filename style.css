@@ -27,12 +27,13 @@ body {
   background: var(--off-white);
   color: var(--text-body);
   line-height: 1.7;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 input, select, textarea, button { font-family: inherit; }
+button, input, select, textarea { max-width: 100%; }
 
 /* ---------- UTILITIES ---------- */
 .container {
@@ -154,6 +155,8 @@ input, select, textarea, button { font-family: inherit; }
   border: none;
   cursor: pointer;
   padding: 6px;
+  z-index: 1001;
+  flex-shrink: 0;
 }
 .burger span {
   display: block;
@@ -168,6 +171,7 @@ input, select, textarea, button { font-family: inherit; }
    ============================ */
 .hero {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   padding: 120px 24px 80px;
@@ -456,7 +460,7 @@ input, select, textarea, button { font-family: inherit; }
   position: fixed; inset: 0;
   background: rgba(0,0,0,.88);
   z-index: 3000;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 24px;
@@ -587,7 +591,8 @@ input, select, textarea, button { font-family: inherit; }
   transition: transform .5s cubic-bezier(.4,0,.2,1);
 }
 .testimonio-card {
-  min-width: calc(33.333% - 16px);
+  flex: 0 0 calc((100% - 48px) / 3);
+  min-width: 0;
   background: #fff;
   border-radius: var(--radius);
   padding: 36px 28px;
@@ -732,15 +737,19 @@ input, select, textarea, button { font-family: inherit; }
   background: rgba(255,255,255,.06);
   border: 1.5px solid rgba(255,255,255,.1);
   border-radius: var(--radius);
-  height: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: clamp(280px, 38vw, 340px);
+  overflow: hidden;
 }
-.mapa-inner { text-align: center; color: rgba(255,255,255,.5); }
+.mapa-inner { width: 100%; height: 100%; text-align: center; color: rgba(255,255,255,.5); }
 .mapa-inner span { font-size: 2.5rem; display: block; margin-bottom: 12px; }
 .mapa-inner p { font-family: 'Playfair Display', serif; color: rgba(255,255,255,.7); font-size: 1rem; }
 .mapa-inner small { font-size: .8rem; }
+.mapa-inner iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 /* ============================
    FOOTER
@@ -793,16 +802,20 @@ input, select, textarea, button { font-family: inherit; }
   .sobre-grid { grid-template-columns: 1fr; gap: 48px; }
   .sobre-visual { display: flex; justify-content: center; }
   .sobre-blob { width: 260px; height: 260px; }
-  .stats-grid { grid-template-columns: repeat(2,1fr); gap: 28px; }
+  .testimonio-card { flex-basis: calc((100% - 24px) / 2); }
 }
 
 @media (max-width: 768px) {
-  .hero { flex-direction: column; padding-top: 100px; text-align: center; gap: 40px; }
+  .container { padding-left: 20px; padding-right: 20px; }
+  .section-header { margin-bottom: 40px; }
+  .hero { flex-direction: column; justify-content: center; padding: 104px 20px 64px; text-align: center; gap: 28px; }
   .hero-content { order: 2; }
   .hero-visual { order: 1; }
   .hero-cta { justify-content: center; }
   .hero-sub { margin: 0 auto 36px; }
   .hero-accent::after { display: none; }
+  .hero-blob { width: clamp(220px, 70vw, 320px); height: clamp(220px, 70vw, 320px); }
+  .hero-title { font-size: clamp(2.45rem, 12vw, 4rem); }
 
   .burger { display: flex; }
   .nav-links {
@@ -813,29 +826,53 @@ input, select, textarea, button { font-family: inherit; }
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: clamp(18px, 4vh, 32px);
     z-index: 999;
     font-size: 1.2rem;
+    overflow-y: auto;
+    padding: calc(82px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom));
   }
   .nav-links.open { display: flex; }
+  body.menu-open { overflow: hidden; }
 
   .servicios-grid { grid-template-columns: 1fr; }
   .presupuesto-banner { flex-direction: column; text-align: center; padding: 24px; }
   .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
   .gi-tall { grid-row: span 1; }
   .gi-wide { grid-column: span 2; }
-  .testimonios-slider { overflow-x: auto; }
-  .testimonio-card { min-width: 280px; }
+  .testimonio-card { flex-basis: 100%; }
   .form-card { padding: 32px 24px; }
   .form-grid { grid-template-columns: 1fr; }
   .contacto-grid { grid-template-columns: 1fr; gap: 40px; }
-  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .mapa-placeholder { height: 300px; }
+  .toast { left: 20px; right: 20px; bottom: 20px; max-width: none; text-align: center; }
 }
 
 @media (max-width: 480px) {
+  .container { padding-left: 16px; padding-right: 16px; }
+  .nav-inner { padding-left: 16px; padding-right: 16px; }
+  .hero { padding-left: 16px; padding-right: 16px; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta a { width: 100%; text-align: center; }
+  .hero-presupuesto-link { justify-content: center; }
+  .hero-scroll { display: none; }
+  .nail-art-preview { gap: 6px; transform: scale(.82); }
+  .servicios, .galeria, .sobre-mi, .testimonios, .reservar, .contacto { padding: 72px 0; }
+  .section-header h2 { font-size: clamp(1.85rem, 10vw, 2.4rem); }
   .galeria-grid { grid-template-columns: 1fr; }
   .gi-wide { grid-column: span 1; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .galeria-grid { grid-auto-rows: 230px; grid-template-rows: none; }
+  .servicio-card { padding: 28px 22px 24px; }
+  .presupuesto-banner { padding: 20px 16px; }
+  .presupuesto-banner-btn { width: 100%; text-align: center; }
+  .sobre-badge { right: 0; bottom: 20px; }
+  .sobre-blob { width: min(260px, 75vw); height: min(260px, 75vw); }
+  .form-card { padding: 24px 16px; border-radius: 16px; }
+  .form-group input, .form-group select, .form-group textarea { font-size: 16px; }
+  .btn-whatsapp { width: 100%; justify-content: center; padding-inline: 16px; }
+  .contacto-info h2 { font-size: 2rem; }
+  .redes { flex-wrap: wrap; }
+  .mapa-placeholder { height: 260px; }
 }
 
 /* ============================

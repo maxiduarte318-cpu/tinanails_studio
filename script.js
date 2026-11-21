@@ -16,6 +16,7 @@ burger.addEventListener('click', () => {
   navLinks.classList.toggle('open');
   const isOpen = navLinks.classList.contains('open');
   burger.setAttribute('aria-expanded', isOpen);
+  document.body.classList.toggle('menu-open', isOpen);
   const spans = burger.querySelectorAll('span');
   if (isOpen) {
     spans[0].style.transform = 'translateY(7px) rotate(45deg)';
@@ -29,6 +30,8 @@ burger.addEventListener('click', () => {
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded', 'false');
     burger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
   });
 });
@@ -90,7 +93,7 @@ if (track) {
   let cardsPerView = getCardsPerView();
 
   function getCardsPerView() {
-    if (window.innerWidth < 600) return 1;
+    if (window.innerWidth <= 768) return 1;
     if (window.innerWidth < 900) return 2;
     return 3;
   }
@@ -112,8 +115,9 @@ if (track) {
     const cpv = getCardsPerView();
     const maxSlide = Math.ceil(cards.length / cpv) - 1;
     currentSlide = Math.max(0, Math.min(index, maxSlide));
-    const cardWidth = track.parentElement.offsetWidth / cpv;
-    track.style.transform = `translateX(-${currentSlide * cardWidth * cpv}px)`;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+    const step = cards[0].getBoundingClientRect().width + gap;
+    track.style.transform = `translateX(-${currentSlide * step * cpv}px)`;
     document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
   }
 

@@ -19,6 +19,7 @@ if (burger && navLinks) {
     navLinks.classList.toggle('open');
     const isOpen = navLinks.classList.contains('open');
     burger.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
     const spans = burger.querySelectorAll('span');
     if (isOpen) {
       spans[0].style.transform = 'translateY(7px) rotate(45deg)';
@@ -32,6 +33,8 @@ if (burger && navLinks) {
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      burger.setAttribute('aria-expanded', 'false');
       burger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
     });
   });
@@ -145,7 +148,7 @@ if (btnEnviarPresu) {
     });
     texto += `%0A*Total estimado:* ${seleccionados.some(s => s.desde) ? 'desde ' : ''}${formatARS(total)}`;
 
-    const tuNumero = '+549365406970';
+    const tuNumero = '5493765406970';
     window.open(`https://wa.me/${tuNumero}?text=${texto}`, '_blank');
   });
 }
