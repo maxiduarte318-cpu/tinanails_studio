@@ -1,0 +1,242 @@
+/* ==============================
+   AUTOPRESUPUESTO — presupuesto.css
+   (usa los tokens y utilidades definidos en style.css)
+   ============================== */
+
+body { opacity: 1; }
+
+.active-link { color: var(--rose-deep) !important; }
+
+/* ---------- HEADER ---------- */
+.presu-header {
+  padding: 150px 0 60px;
+  background: linear-gradient(180deg, var(--rose-pale) 0%, var(--off-white) 100%);
+  text-align: center;
+}
+.presu-header .eyebrow { }
+.presu-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  color: var(--charcoal);
+  line-height: 1.2;
+}
+.presu-header h1 em { font-style: italic; color: var(--rose-deep); }
+.presu-header-sub {
+  color: var(--text-light);
+  max-width: 520px;
+  margin: 16px auto 0;
+  font-size: 1rem;
+}
+
+/* ---------- LAYOUT ---------- */
+.presu-calc { padding: 60px 0 110px; }
+.presu-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* ---------- SERVICE CARDS ---------- */
+.presu-servicios { display: flex; flex-direction: column; gap: 18px; }
+.presu-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #fff;
+  border: 1.5px solid #f0e4e8;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  transition: var(--transition);
+}
+.presu-card:has(.presu-checkbox:checked) {
+  border-color: var(--rose-deep);
+  box-shadow: var(--shadow);
+  background: linear-gradient(120deg, #fff, var(--rose-pale) 250%);
+}
+
+.presu-card-check { flex-shrink: 0; }
+.presu-checkbox { position: absolute; opacity: 0; width: 26px; height: 26px; cursor: pointer; }
+.presu-card-check label {
+  display: block;
+  width: 26px; height: 26px;
+  border: 2px solid #e0c4cd;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+  background: var(--off-white);
+}
+.presu-checkbox:checked + label {
+  background: var(--rose-deep);
+  border-color: var(--rose-deep);
+}
+.presu-checkbox:checked + label::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.presu-card-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+.presu-card-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--rose-pale);
+  border-radius: 50%;
+}
+.presu-card-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--charcoal);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.presu-card-info p {
+  font-size: .85rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+.mini-badge {
+  background: var(--gold);
+  color: var(--charcoal);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 50px;
+}
+
+.presu-card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.presu-card-precio {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: var(--rose-deep);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+.presu-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: .35;
+  pointer-events: none;
+  transition: var(--transition);
+}
+.presu-card:has(.presu-checkbox:checked) .presu-qty {
+  opacity: 1;
+  pointer-events: auto;
+}
+.qty-btn {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid #e0c4cd;
+  background: #fff;
+  color: var(--rose-deep);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+  line-height: 1;
+}
+.qty-btn:hover { background: var(--rose-deep); color: #fff; border-color: var(--rose-deep); }
+.qty-val { font-weight: 700; color: var(--charcoal); min-width: 14px; text-align: center; font-size: .9rem; }
+
+/* ---------- RESUMEN ---------- */
+.presu-resumen { position: sticky; top: 100px; }
+.presu-resumen-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 32px 28px;
+}
+.presu-resumen-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--charcoal);
+  margin-bottom: 18px;
+}
+.presu-resumen-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 40px;
+  margin-bottom: 18px;
+}
+.presu-vacio { color: var(--text-light); font-size: .88rem; font-style: italic; }
+.resumen-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: .88rem;
+  color: var(--text-body);
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #f0e4e8;
+}
+.resumen-item .ri-nombre { color: var(--charcoal); font-weight: 700; }
+.resumen-item .ri-nombre small { color: var(--text-light); font-weight: 400; }
+.resumen-item .ri-precio { color: var(--rose-deep); font-weight: 700; white-space: nowrap; }
+
+.presu-resumen-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 2px solid var(--charcoal);
+  margin-bottom: 6px;
+}
+.presu-resumen-total span { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--text-light); }
+.presu-resumen-total strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  color: var(--charcoal);
+}
+.presu-nota { font-size: .76rem; color: var(--text-light); margin-bottom: 18px; line-height: 1.5; }
+
+.presu-btn-enviar {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+  opacity: .5;
+  pointer-events: none;
+}
+.presu-btn-enviar.enabled { opacity: 1; pointer-events: auto; }
+.presu-btn-reservar {
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .presu-layout { grid-template-columns: 1fr; }
+  .presu-resumen { position: static; }
+}
+
+@media (max-width: 560px) {
+  .presu-card { flex-wrap: wrap; }
+  .presu-card-right { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; margin-left: 44px; }
+}
