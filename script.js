@@ -223,7 +223,7 @@ if (btnEnviar) {
       `*Fecha:* ${fecha}%0A` +
       `*Diseño:* ${mensaje || 'Sin especificar'}`;
 
-    const tuNumero = '5493764232429';
+    const tuNumero = '5493765493765406970';
     window.open(`https://wa.me/${tuNumero}?text=${texto}`, '_blank');
 
     showToast('✅ ¡Solicitud enviada! Te contactaremos pronto.', '#4CAF50');

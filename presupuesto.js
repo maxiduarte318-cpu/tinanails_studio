@@ -145,7 +145,7 @@ if (btnEnviarPresu) {
     });
     texto += `%0A*Total estimado:* ${seleccionados.some(s => s.desde) ? 'desde ' : ''}${formatARS(total)}`;
 
-    const tuNumero = '5493764232429';
+    const tuNumero = '+549365406970';
     window.open(`https://wa.me/${tuNumero}?text=${texto}`, '_blank');
   });
 }
