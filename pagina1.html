@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F9E8EC" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
   <title>Galería completa | Tina Nails Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,12 +19,13 @@
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Tina <span>Nails</span></a>
-      <button class="burger" id="burger" aria-label="Abrir menú">
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html#inicio">Inicio</a></li>
         <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
         <li><a href="pagina1.html" class="active-link">Galería</a></li>
         <li><a href="index.html#contacto">Contacto</a></li>
         <li><a href="presupuesto.html">Autopresupuesto</a></li>
@@ -43,6 +47,11 @@
   <section class="galeria-full">
     <div class="container">
       <div class="galeria-full-grid">
+
+        <div class="galeria-item">
+          <img src="img/dual-sandwich.jpg" alt="Esculpidas Dual sandwich" />
+          <div class="galeria-overlay"><span>Esculpidas Dual sandwich</span></div>
+        </div>
 
         <div class="galeria-item">
           <img src="img/foto1.jpg" alt="Soft Gel" />
@@ -100,6 +109,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <a href="index.html" class="nav-logo">Tina <span>Nails</span></a>
+      <a href="tienda.html" class="footer-presupuesto">Tienda</a>
       <a href="presupuesto.html" class="footer-presupuesto">Autopresupuesto</a>
       <p>© 2025 Tina Nails Studio · Todos los derechos reservados</p>
       <p class="footer-love">Hecho con 💅 en Misiones</p>

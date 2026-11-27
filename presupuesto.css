@@ -13,7 +13,6 @@ body { opacity: 1; }
   background: linear-gradient(180deg, var(--rose-pale) 0%, var(--off-white) 100%);
   text-align: center;
 }
-.presu-header .eyebrow { }
 .presu-header h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.2rem, 4.5vw, 3.4rem);
@@ -237,6 +236,7 @@ body { opacity: 1; }
 }
 
 @media (max-width: 560px) {
+  .presu-layout { gap: 24px; }
   .presu-header { padding: 120px 16px 48px; }
   .presu-header h1 { font-size: clamp(2rem, 11vw, 2.8rem); }
   .presu-calc { padding: 40px 0 72px; }
@@ -248,7 +248,8 @@ body { opacity: 1; }
     gap: 12px;
   }
   .presu-card-check { grid-column: 1; }
-  .presu-card-info { grid-column: 2; min-width: 0; }
+  .presu-card-info { grid-column: 2; min-width: 0; align-items: flex-start; }
+  .presu-card-icon { width: 40px; height: 40px; }
   .presu-card-right {
     grid-column: 2;
     width: 100%;
@@ -257,7 +258,21 @@ body { opacity: 1; }
     justify-content: space-between;
     align-items: center;
     margin-left: 0;
+    gap: 8px;
   }
+  .presu-card-precio { white-space: normal; text-align: right; }
   .presu-resumen-card { padding: 24px 18px; }
   .presu-resumen-total strong { font-size: 1.65rem; }
+  .presu-btn-enviar, .presu-btn-reservar { min-height: 48px; }
+  .resumen-item { gap: 12px; }
+}
+
+@media (max-width: 360px) {
+  .presu-card-info { display: grid; grid-template-columns: 40px minmax(0, 1fr); }
+  .presu-card-info h3 { font-size: 1rem; }
+  .presu-card-info p { line-height: 1.45; }
+  .presu-card-right { flex-wrap: wrap; }
+  .presu-card-precio { font-size: .92rem; }
+  .qty-btn { width: 32px; height: 32px; }
+  .presu-resumen-card { padding-inline: 14px; }
 }

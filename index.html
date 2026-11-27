@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#F9E8EC" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
 </head>
 <body>
 
@@ -15,12 +18,13 @@
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#inicio" class="nav-logo">Tina <span>Nails</span></a>
-      <button class="burger" id="burger" aria-label="Abrir menú">
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
         <li><a href="#galeria">Galería</a></li>
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -148,6 +152,21 @@
     </div>
   </section>
 
+  <!-- TIENDA / PRESS ON -->
+  <section class="tienda-home" id="tienda">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Tienda</p>
+        <h2>Press <em>On</em></h2>
+        <p class="section-sub">Tocá la imagen para ver los diseños en stock o pedir los tuyos.</p>
+      </div>
+      <a href="tienda.html" class="tienda-home-link" aria-label="Ir a la tienda de Press On">
+        <img src="img/caratula.jpg" alt="Diseño de uñas Press On, diseños 100% personalizados" loading="lazy" />
+        <span class="tienda-home-cta">Ver tienda →</span>
+      </a>
+    </div>
+  </section>
+
   <!-- GALERÍA -->
   <section class="galeria" id="galeria">
     <div class="container">
@@ -155,28 +174,51 @@
         <p class="eyebrow">Portfolio</p>
         <h2>Trabajos <em>recientes</em></h2>
       </div>
-      <div class="galeria-grid">
-
-        <div class="galeria-item gi-tall">
-          <img src="img/foto1.jpg" alt="Soft Gel" />
-          <div class="galeria-overlay"><span>Soft Gel</span></div>
+      <div class="galeria-carousel" id="galCarousel">
+        <button class="gal-arrow gal-prev" id="galPrev" aria-label="Anterior">‹</button>
+        <div class="gal-viewport">
+          <div class="gal-track" id="galTrack">
+          <div class="galeria-slide">
+            <img src="img/dual-sandwich.jpg" alt="Esculpidas Dual sandwich" loading="lazy" />
+            <div class="galeria-overlay"><span>Esculpidas Dual sandwich</span></div>
+          </div>
+          <div class="galeria-slide">
+            <img src="img/foto1.jpg" alt="Soft Gel" loading="lazy" />
+            <div class="galeria-overlay"><span>Soft Gel</span></div>
+          </div>
+          <div class="galeria-slide">
+            <img src="img/foto2.jpg" alt="Capping en gel" loading="lazy" />
+            <div class="galeria-overlay"><span>Capping en gel</span></div>
+          </div>
+          <div class="galeria-slide">
+            <img src="img/foto3.jpg" alt="Esculpidas en poli gel" loading="lazy" />
+            <div class="galeria-overlay"><span>Esculpidas en poli gel</span></div>
+          </div>
+          <div class="galeria-slide">
+            <img src="img/foto4.jpg" alt="Aura Effect" loading="lazy" />
+            <div class="galeria-overlay"><span>Aura Effect</span></div>
+          </div>
+          <div class="galeria-slide">
+            <img src="img/foto5.jpg" alt="Nail Art" loading="lazy" />
+            <div class="galeria-overlay"><span>Nail Art</span></div>
+          </div>
+          <div class="galeria-slide">
+            <img src="img/WhatsApp 1.jpg" alt="Semipermanente" loading="lazy" />
+            <div class="galeria-overlay"><span>Semipermanente</span></div>
+          </div>
+          <div class="galeria-slide">
+            <img src="img/WhatsApp 2.jpg" alt="Diseño personalizado" loading="lazy" />
+            <div class="galeria-overlay"><span>Diseño personalizado</span></div>
+          </div>
+          <div class="galeria-slide">
+            <img src="img/WhatsApp 3.jpg" alt="Manicura clásica" loading="lazy" />
+            <div class="galeria-overlay"><span>Manicura clásica</span></div>
+          </div>
+          </div>
         </div>
-
-        <div class="galeria-item">
-          <img src="img/foto2.jpg" alt="Capping en gel" />
-          <div class="galeria-overlay"><span>Capping en gel</span></div>
-        </div>
-
-        <div class="galeria-item">
-          <img src="img/foto3.jpg" alt="Esculpidas en poli gel" />
-          <div class="galeria-overlay"><span>Esculpidas en poli gel</span></div>
-        </div>
-
-        <div class="galeria-item gi-wide">
-          <img src="img/foto4.jpg" alt="Aura effect" />
-          <div class="galeria-overlay"><span>Aura Effect</span></div>
-        </div>
+        <button class="gal-arrow gal-next" id="galNext" aria-label="Siguiente">›</button>
       </div>
+      <div class="gal-dots" id="galDots"></div>
       <p class="galeria-note">
         Mirá más diseños en
         <a href="https://instagram.com/ttina.nanails?igsh=dDE1a2VkemU4ZWNw" target="_blank" rel="noopener">@ttina.nanails</a>
@@ -382,6 +424,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <a href="#inicio" class="nav-logo">Tina <span>Nails</span></a>
+      <a href="tienda.html" class="footer-presupuesto">Tienda</a>
       <a href="presupuesto.html" target="_self" class="footer-presupuesto">Autopresupuesto</a>
       <p>© 2025 Tina Nails Studio · Todos los derechos reservados</p>
       <p class="footer-love">Hecho con 💅 en Misiones</p>

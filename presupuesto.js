@@ -38,6 +38,14 @@ if (burger && navLinks) {
       burger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
     });
   });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navLinks.classList.contains('open')) burger.click();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980 && navLinks.classList.contains('open')) burger.click();
+  });
 }
 
 // ─── TOAST ─────────────────────────────────────────────────────────
