@@ -112,3 +112,31 @@ body { opacity: 1; }
   .producto-info h3 { font-size: 1.45rem; }
   .producto-precio { font-size: 1.4rem; }
 }
+
+/* ---------- TIENDA MOBILE ---------- */
+@media (max-width: 768px) {
+  .tienda-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .producto-card {
+    width: 100%;
+  }
+  .producto-fotos {
+    height: clamp(260px, 78vw, 360px);
+  }
+}
+
+@media (max-width: 480px) {
+  .presu-header {
+    padding: calc(112px + env(safe-area-inset-top)) 14px 42px;
+  }
+  .tienda { padding-block: 44px 64px; }
+  .tienda-grid { gap: 18px; }
+  .producto-fotos { height: 300px; }
+  .producto-info { padding: 22px 16px; }
+  .producto-btn { min-height: 48px; }
+}
+
+@media (max-width: 360px) {
+  .producto-fotos { height: 240px; }
+}

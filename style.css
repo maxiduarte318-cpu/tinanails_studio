@@ -912,109 +912,114 @@ img, iframe, video, canvas, svg { max-width: 100%; }
 }
 
 @media (max-width: 768px) {
-  .navbar { padding: 12px 0; }
-  .navbar.scrolled { padding: 8px 0; }
-  .nav-inner { min-height: 44px; }
-  .nav-logo { font-size: 1.35rem; }
-  .hero { min-height: min(860px, 100svh); }
-  .hero-title { overflow-wrap: break-word; }
-  .hero-visual { width: 100%; }
-  .hero-blob { width: min(300px, 72vw); height: min(300px, 72vw); }
-  .nail-art-preview { width: max-content; max-width: 90vw; }
-  .presupuesto-banner { overflow-wrap: anywhere; }
-  .servicio-footer { gap: 12px; }
-  .galeria-slide { touch-action: pan-y; }
-  .gal-arrow { width: 48px; height: 48px; }
-  .testimonios-slider { cursor: grab; }
-  .form-card { width: 100%; }
-  .footer-inner { padding-inline: 8px; }
-  .mapa-placeholder { width: 100%; }
-  .servicios-grid { grid-template-columns: 1fr; }
-  .sobre-grid { grid-template-columns: 1fr; }
-  .sobre-visual { width: 100%; }
-  .sobre-text { width: 100%; min-width: 0; }
-  .contacto-grid { grid-template-columns: 1fr; }
-  .form-grid { grid-template-columns: 1fr; }
+  .container { padding-inline: 18px; }
+
+  .navbar { background: rgba(253,250,249,.92); backdrop-filter: blur(12px); }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+    min-height: auto;
+    padding: calc(104px + env(safe-area-inset-top)) 18px 54px;
+    text-align: center;
+  }
+  .hero-content { width: 100%; }
+  .hero-eyebrow { margin-bottom: 12px; }
+  .hero-title { font-size: clamp(2.35rem, 13vw, 3.5rem); line-height: 1.06; }
+  .hero-sub { max-width: 520px; margin: 0 auto 26px; line-height: 1.65; }
+  .hero-cta { justify-content: center; }
+  .hero-presupuesto-link { margin-top: 18px; }
+  .hero-visual { min-height: 240px; }
+  .hero-scroll { display: none; }
+
+  .servicios, .galeria, .sobre-mi, .testimonios, .reservar, .contacto,
+  .tienda-home { padding-block: 68px; }
+  .section-header { margin-bottom: 36px; }
+  .section-header h2 { font-size: clamp(1.9rem, 9vw, 2.55rem); }
+
+  .presupuesto-banner {
+    margin-bottom: 28px;
+    padding: 20px;
+    text-align: center;
+  }
+  .presupuesto-banner-text { width: 100%; }
+  .presupuesto-banner-btn { width: 100%; }
+
+  .servicios-grid { gap: 16px; }
+  .servicio-card { padding: 26px 22px 22px; }
+
+  .tienda-home-link { max-width: 380px; }
+
+  .galeria-slide { height: min(118vw, 430px); }
+  .gal-prev { left: 8px; }
+  .gal-next { right: 8px; }
+  .galeria-overlay { opacity: 1; }
+
+  .sobre-grid { gap: 38px; }
+  .sobre-visual { max-width: 380px; margin-inline: auto; }
+  .sobre-blob { width: min(340px, 82vw); height: min(340px, 82vw); }
+  .sobre-badge { right: 0; bottom: 18px; }
+
+  .testimonio-track { gap: 16px; }
+  .testimonio-card { flex-basis: 100%; }
+
+  .form-card { padding: 28px 18px; border-radius: 18px; }
+
+  .contacto-info h2 { margin-bottom: 28px; }
+  .mapa-placeholder { height: min(78vw, 340px); }
+
+  .footer { padding-block: 32px; }
+  .toast {
+    left: 16px;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    max-width: none;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
-  .btn-primary, .btn-ghost, .btn-link, .btn-nav, .presupuesto-banner-btn,
-  .btn-whatsapp, .red-link, .footer-presupuesto {
-    min-height: 44px;
-  }
-  .btn-primary, .btn-ghost, .presupuesto-banner-btn, .btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; }
-  .nav-logo { font-size: 1.22rem; }
-  .burger { padding: 10px 6px; }
-  .hero { min-height: auto; }
-  .hero-eyebrow { line-height: 1.5; }
-  .hero-sub { font-size: 1rem; }
-  .hero-presupuesto-link { max-width: 100%; text-align: center; }
-  .nail.n1 { width: 38px; }
-  .nail.n2 { width: 42px; }
-  .nail.n3 { width: 46px; }
-  .nail.n4 { width: 42px; }
-  .nail.n5 { width: 36px; }
-  .section-sub { padding-inline: 4px; }
-  .presupuesto-banner-text strong { line-height: 1.35; }
-  .servicio-card { min-width: 0; }
-  .servicio-footer { flex-wrap: wrap; }
-  .tienda-home-link { width: 100%; }
-  .tienda-home-cta { white-space: nowrap; }
-  .galeria-slide { height: clamp(300px, 105vw, 420px); }
-  .gal-dots { min-height: 44px; align-items: center; }
-  .gal-dots button { width: 12px; height: 12px; }
-  .gal-dots button.active { width: 30px; }
-  .sobre-text { text-align: left; }
-  .sobre-lista li { align-items: flex-start; }
-  .testimonio-card { padding: 28px 20px; }
-  .slider-dots { min-height: 44px; align-items: center; }
-  .dot { width: 12px; height: 12px; }
-  .form-grid { gap: 18px; }
-  .form-group input, .form-group select, .form-group textarea { min-height: 48px; }
-  .info-item p { overflow-wrap: anywhere; }
-  .redes { width: 100%; }
-  .red-link { flex: 1; text-align: center; }
-  .lightbox-backdrop { padding: 12px; }
-  .lightbox-img { max-width: 94vw; max-height: 82vh; }
-  .lightbox-close { top: max(12px, env(safe-area-inset-top)); right: 12px; }
-  .lightbox-caption { bottom: max(12px, env(safe-area-inset-bottom)); width: 90%; text-align: center; }
-  .toast { font-size: .85rem; }
-}
+  .container { padding-inline: 14px; }
+  .nav-inner { padding-inline: 14px; }
 
-@media (max-width: 360px) {
-  .container { padding-inline: 12px; }
-  .nav-inner { padding-inline: 12px; }
-  .hero { padding-inline: 12px; }
-  .hero-title { font-size: 2.25rem; }
+  .hero { padding-inline: 14px; }
+  .hero-title { font-size: clamp(2.15rem, 12.5vw, 2.75rem); }
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero-cta a { width: 100%; }
+  .hero-visual { min-height: 210px; }
   .hero-blob { width: 220px; height: 220px; }
-  .nail-art-preview { transform: scale(.72); }
-  .btn-primary, .btn-ghost { padding-inline: 20px; }
-  .presupuesto-banner { margin-inline: 0; }
-  .form-card { padding-inline: 12px; }
-  .contacto-info h2 { font-size: 1.8rem; }
-  .mapa-placeholder { height: 220px; }
-}
 
-@media (max-height: 500px) and (orientation: landscape) {
-  .nav-links { justify-content: flex-start; gap: 10px; }
-  .nav-links a { font-size: .9rem; }
-  .hero { min-height: 520px; }
-}
+  .presupuesto-banner { align-items: stretch; }
+  .presupuesto-banner-text strong { font-size: 1.05rem; }
 
-@media (hover: none) {
-  .galeria-overlay { opacity: 1; background: linear-gradient(to top, rgba(194,87,122,.55), transparent 58%); }
-  .galeria-item:hover img, .galeria-slide:hover img, .tienda-photo:hover img { transform: none; }
-}
+  .servicio-footer { align-items: flex-end; }
+  .precio { font-size: 1.08rem; }
 
-/* Reduce el movimiento sin afectar navegación ni carruseles. */
+  .galeria-slide { height: 112vw; max-height: 410px; }
+  .gal-arrow { width: 42px; height: 42px; }
+
+  .sobre-blob { width: 280px; height: 280px; }
+  .initials { width: 104px; height: 104px; }
+  .sobre-badge { bottom: 6px; }
+
+  .testimonio-card { min-height: 0; }
+
+  .form-card { width: calc(100% + 4px); margin-inline: -2px; }
+  .form-full .btn-send { width: 100%; }
+  .btn-whatsapp { width: 100%; }
+
+  .info-item { gap: 12px; }
+  .redes { gap: 10px; }
+  .mapa-placeholder { height: 250px; }
+}
 
 @media (max-width: 768px) {
+  .servicios-grid,
   .sobre-grid,
   .contacto-grid,
-  .form-grid,
-  .servicios-grid { grid-template-columns: minmax(0, 1fr) !important; }
-  .sobre-text,
-  .sobre-visual,
-  .contacto-info,
-  .mapa-placeholder { width: 100% !important; min-width: 0; }
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
 }

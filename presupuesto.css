@@ -267,6 +267,19 @@ body { opacity: 1; }
   .resumen-item { gap: 12px; }
 }
 
+@media (max-width: 480px) {
+  .presu-header {
+    padding: calc(112px + env(safe-area-inset-top)) 14px 42px;
+  }
+  .presu-header-sub { font-size: .92rem; line-height: 1.55; }
+  .presu-calc { padding-block: 36px 64px; }
+  .presu-card { border-radius: 14px; }
+  .presu-card-info { gap: 10px; }
+  .presu-card-info h3 { font-size: 1rem; line-height: 1.25; }
+  .presu-card-info p { font-size: .82rem; line-height: 1.45; }
+  .presu-resumen-card { border-radius: 14px; }
+}
+
 @media (max-width: 360px) {
   .presu-card-info { display: grid; grid-template-columns: 40px minmax(0, 1fr); }
   .presu-card-info h3 { font-size: 1rem; }
